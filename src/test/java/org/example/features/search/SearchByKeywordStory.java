@@ -15,7 +15,7 @@ import org.example.steps.serenity.EndUserSteps;
 @RunWith(SerenityRunner.class)
 public class SearchByKeywordStory {
 
-    @Managed(uniqueSession = true)
+    @Managed(uniqueSession = true, driver="chrome")
     public WebDriver webdriver;
 
     @Steps
@@ -34,7 +34,7 @@ public class SearchByKeywordStory {
     public void searching_by_keyword_banana_should_display_the_corresponding_article() {
         anna.is_the_home_page();
         anna.looks_for("pear");
-        anna.should_see_definition("An edible fruit produced by the pear tree, similar to an apple but elongated towards the stem.");
+        anna.should_see_definition("An edible fruit produced by the pear tree, similar to an apple but typically elongated towards the stem. A type of fruit tree (Pyrus communis). synonym Synonym: pear tree The wood of the pear tree (pearwood, pear wood). Choke pear (a torture device). (Jamaica) avocado, alligator pear A desaturated chartreuse yellow colour, like that of a pear. pear:  ");
     }
 
     @Pending @Test

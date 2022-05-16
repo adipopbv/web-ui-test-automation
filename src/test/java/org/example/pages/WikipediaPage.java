@@ -28,6 +28,9 @@ public class WikipediaPage extends PageObject {
     @FindBy(id = "pt-userpage")
     private WebElementFacade accountElement;
 
+    @FindBy(id = "pt-anonuserpage")
+    private WebElementFacade noAccountElement;
+
     @FindBy(id = "searchInput")
     private WebElementFacade searchField;
 
@@ -72,6 +75,14 @@ public class WikipediaPage extends PageObject {
     public String accountUsername() {
         if (accountElement.isCurrentlyVisible()) {
             return accountElement.getText();
+        } else {
+            return "";
+        }
+    }
+
+    public String noAccountUsername() {
+        if (noAccountElement.isCurrentlyVisible()) {
+            return noAccountElement.getText();
         } else {
             return "";
         }

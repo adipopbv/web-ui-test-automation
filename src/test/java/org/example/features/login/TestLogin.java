@@ -14,20 +14,26 @@ import org.example.steps.serenity.EndUserSteps;
 
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("src/test/resources/features/login/data.csv")
-public class LoginStory {
-
+public class TestLogin {
     @Managed(uniqueSession = true, driver="chrome")
     public WebDriver webdriver;
 
     @Steps
     public EndUserSteps user;
 
-    String username, password;
+    String username, password, badPassword;
 
-    @Issue("#LOGIN-date-valide")
+    @Issue("#valid-login")
     @Test
-    public void login_with_valid_credentials() {
+    public void testValidLogin() {
         user.openHomePage();
         user.login(username, password);
+    }
+
+    @Issue("#invalid-login")
+    @Test
+    public void testInvalidLogin() {
+        user.openHomePage();
+        user.failedLogin(username, badPassword);
     }
 }

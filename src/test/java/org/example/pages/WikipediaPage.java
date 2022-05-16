@@ -7,15 +7,11 @@ package org.example.pages;
         import net.serenitybdd.core.annotations.findby.FindBy;
 
         import net.thucydides.core.pages.PageObject;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.interactions.Actions;
 
 @DefaultUrl("https://en.wikipedia.org/wiki/Main_Page")
 public class WikipediaPage extends PageObject {
-
     @FindBy(id="pt-login")
-    private WebElementFacade goToLogin;
+    private WebElementFacade toLoginPageButton;
 
     @FindBy(id="wpName1")
     private WebElementFacade usernameField;
@@ -27,9 +23,14 @@ public class WikipediaPage extends PageObject {
     private WebElementFacade loginButton;
 
     @FindBy(id="pt-userpage")
-    public WebElementFacade accountButton;
+    public WebElementFacade accountElement;
 
+    @FindBy(id="pt-anonuserpage")
+    public WebElementFacade noAccountElement;
 
+    public void goToLoginPage() {
+        toLoginPageButton.click();
+    }
 
     public void enterUsername(String username) {
         usernameField.type(username);
@@ -39,16 +40,16 @@ public class WikipediaPage extends PageObject {
         passwordField.type(password);
     }
 
-    public void goToLogin() {
-        goToLogin.click();
-    }
-
-    public void login() {
+    public void clickLogin() {
         loginButton.click();
     }
 
-    public String myAccount() {
-        return myAccount.findElement(By.xpath(".//a")).getAttribute("href");
+    public String accountUsername() {
+        if (accountElement.isCurrentlyVisible()) {
+            return accountElement.getText();
+        } else {
+            return "";
+        }
     }
 
     /*public void logout(WebDriver webDriver) {

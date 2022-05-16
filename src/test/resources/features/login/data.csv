@@ -1,2 +1,2 @@
-username,email,password
-FUN-Courier-Test,caseneb302@hbehs.com,Test12345
+username,email,password,badPassword
+FUN-Courier-Test,caseneb302@hbehs.com,Test12345,badPassword

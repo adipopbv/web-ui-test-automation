@@ -70,6 +70,16 @@ public class EndUserSteps {
     }
 
     @Step
+    private void clickRomanianLanguageButton() {
+        wikipediaPage.clickRomanianLanguageButton();
+    }
+
+    @Step
+    private void shouldBeInRomanianLanguage() {
+        assertThat(wikipediaPage.mainPageTabText(), is("Pagina principală"));
+    }
+
+    @Step
     public void login(String username, String password) {
         goToLoginPage();
         enterUsername(username);
@@ -98,5 +108,11 @@ public class EndUserSteps {
         enterSearchTerm(searchTerm);
         clickSearchButton();
         shouldBeOnPageWithTitle(searchTerm);
+    }
+
+    @Step
+    public void changeLanguageToRomanian() {
+        clickRomanianLanguageButton();
+        shouldBeInRomanianLanguage();
     }
 }

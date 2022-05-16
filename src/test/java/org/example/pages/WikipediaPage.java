@@ -40,17 +40,11 @@ public class WikipediaPage extends PageObject {
     @FindBy(id = "firstHeading")
     private WebElementFacade searchedPageTitle;
 
-    @FindBy(id = "pt-preferences")
-    public WebElementFacade toPreferences;
+    @FindBy(id = "ca-nstab-main")
+    private WebElementFacade mainPageTab;
 
-    @FindBy(id = "ooui-php-32")
-    public WebElementFacade masculineButton;
-
-    @FindBy(id = "ooui-php-31")
-    public WebElementFacade feminineButton;
-
-    @FindBy(id = "prefcontrol")
-    public WebElementFacade savePreferencesButton;
+    @FindBy(className = "interlanguage-link interwiki-ro mw-list-item")
+    private WebElementFacade romanianLanguageButton;
 
     public void goToLoginPage() {
         toLoginPageButton.click();
@@ -75,17 +69,15 @@ public class WikipediaPage extends PageObject {
     public String accountUsername() {
         if (accountElement.isCurrentlyVisible()) {
             return accountElement.getText();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public String noAccountUsername() {
         if (noAccountElement.isCurrentlyVisible()) {
             return noAccountElement.getText();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public void enterSearchTerm(String searchTerm) {
@@ -99,8 +91,18 @@ public class WikipediaPage extends PageObject {
     public String searchedPageTitle() {
         if (searchedPageTitle.isCurrentlyVisible()) {
             return searchedPageTitle.getText();
-        } else {
-            return "";
         }
+        return "";
+    }
+
+    public String mainPageTabText() {
+        if (mainPageTab.isCurrentlyVisible()) {
+            return mainPageTab.getText();
+        }
+        return "";
+    }
+
+    public void clickRomanianLanguageButton() {
+        romanianLanguageButton.click();
     }
 }

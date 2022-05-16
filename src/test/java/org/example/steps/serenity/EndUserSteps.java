@@ -46,7 +46,7 @@ public class EndUserSteps {
 
     @Step
     public void shouldBeLoggedOut() {
-        assertThat(wikipediaPage.noAccountUsername(), is(not("")));
+        assertThat(wikipediaPage.noAccountUsername(), is(""));
     }
 
     @Step

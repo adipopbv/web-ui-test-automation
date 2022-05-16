@@ -31,6 +31,18 @@ public class WikipediaPage extends PageObject {
     @FindBy(id="pt-anonuserpage")
     public WebElementFacade noAccountElement;
 
+    @FindBy(id="pt-preferences")
+    public WebElementFacade toPreferences;
+
+    @FindBy(id="ooui-php-32")
+    public WebElementFacade masculineButton;
+
+    @FindBy(id="ooui-php-31")
+    public WebElementFacade feminineButton;
+
+    @FindBy(id="prefcontrol")
+    public WebElementFacade savePreferencesButton;
+
     public void goToLoginPage() {
         toLoginPageButton.click();
     }

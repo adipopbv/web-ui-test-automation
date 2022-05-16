@@ -1,49 +1,35 @@
-package org.example.features.login;
+package org.example.features.search;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Issue;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
-
 import net.thucydides.junit.annotations.UseTestDataFrom;
-import org.junit.After;
+import org.example.steps.serenity.EndUserSteps;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import org.example.steps.serenity.EndUserSteps;
-
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("src/test/resources/features/login/data.csv")
-public class TestLogin {
+public class TestSearch {
     @Managed(uniqueSession = true, driver = "chrome")
     public WebDriver webdriver;
 
     @Steps
     public EndUserSteps user;
 
-    String username, password, badPassword;
+    String searchTerm;
 
     @Before
     public void setUp() {
         user.openHomePage();
     }
 
-    @After
-    public void tearDown() {
-        user.logout();
-    }
-
-    @Issue("#valid-login")
+    @Issue("#search")
     @Test
-    public void testValidLogin() {
-        user.login(username, password);
-    }
-
-    @Issue("#invalid-login")
-    @Test
-    public void testInvalidLogin() {
-        user.failedLogin(username, badPassword);
+    public void testSearch() {
+        user.search(searchTerm);
     }
 }

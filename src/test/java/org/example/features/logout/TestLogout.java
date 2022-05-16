@@ -1,33 +1,32 @@
-package org.example.features.login;
+package org.example.features.logout;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Issue;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
-
 import net.thucydides.junit.annotations.UseTestDataFrom;
+import org.example.steps.serenity.EndUserSteps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import org.example.steps.serenity.EndUserSteps;
-
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom("src/test/resources/features/login/data.csv")
-public class TestLogin {
+public class TestLogout {
     @Managed(uniqueSession = true, driver = "chrome")
     public WebDriver webdriver;
 
     @Steps
     public EndUserSteps user;
 
-    String username, password, badPassword;
+    String username, password;
 
     @Before
     public void setUp() {
         user.openHomePage();
+        user.login(username, password);
     }
 
     @After
@@ -35,15 +34,9 @@ public class TestLogin {
         user.logout();
     }
 
-    @Issue("#valid-login")
+    @Issue("#logout")
     @Test
-    public void testValidLogin() {
-        user.login(username, password);
-    }
-
-    @Issue("#invalid-login")
-    @Test
-    public void testInvalidLogin() {
-        user.failedLogin(username, badPassword);
+    public void testLogout() {
+        user.logout();
     }
 }

@@ -55,6 +55,21 @@ public class EndUserSteps {
     }
 
     @Step
+    public void enterSearchTerm(String term) {
+        wikipediaPage.enterSearchTerm(term);
+    }
+
+    @Step
+    private void clickSearchButton() {
+        wikipediaPage.clickSearchButton();
+    }
+
+    @Step
+    private void shouldBeOnPageWithTitle(String searchTerm) {
+        assertThat(wikipediaPage.searchedPageTitle(), is(searchTerm));
+    }
+
+    @Step
     public void login(String username, String password) {
         goToLoginPage();
         enterUsername(username);
@@ -76,5 +91,12 @@ public class EndUserSteps {
     public void logout() {
         clickLogout();
         shouldBeLoggedOut();
+    }
+
+    @Step
+    public void search(String searchTerm) {
+        enterSearchTerm(searchTerm);
+        clickSearchButton();
+        shouldBeOnPageWithTitle(searchTerm);
     }
 }

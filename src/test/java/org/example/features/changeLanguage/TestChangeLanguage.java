@@ -12,9 +12,11 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityParameterizedRunner.class)
+@UseTestDataFrom("src/test/resources/features/login/data.csv")
 public class TestChangeLanguage {
     @Managed(uniqueSession = true, driver = "chrome")
     public WebDriver webdriver;
+    public String username;
 
     @Steps
     public EndUserSteps user;

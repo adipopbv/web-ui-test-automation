@@ -29,6 +29,6 @@ public class TestChangeLanguage {
     @Issue("#change-language")
     @Test
     public void testChangeLanguage() {
-        user.changeLanguageToRomanian();
+        user.changeLanguageToRomanian(webdriver);
     }
 }

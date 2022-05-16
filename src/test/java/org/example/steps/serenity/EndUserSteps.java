@@ -80,6 +80,11 @@ public class EndUserSteps {
     }
 
     @Step
+    private void scrollToRomanianLanguageButton(WebDriver driver) {
+        wikipediaPage.scrollToRomanianLanguageButton(driver);
+    }
+
+    @Step
     public void login(String username, String password) {
         goToLoginPage();
         enterUsername(username);
@@ -111,7 +116,8 @@ public class EndUserSteps {
     }
 
     @Step
-    public void changeLanguageToRomanian() {
+    public void changeLanguageToRomanian(WebDriver driver) {
+        scrollToRomanianLanguageButton(driver);
         clickRomanianLanguageButton();
         shouldBeInRomanianLanguage();
     }

@@ -7,6 +7,10 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.annotations.findby.FindBy;
 
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
 
 @DefaultUrl("https://en.wikipedia.org/wiki/Main_Page")
 public class WikipediaPage extends PageObject {
@@ -104,5 +108,9 @@ public class WikipediaPage extends PageObject {
 
     public void clickRomanianLanguageButton() {
         romanianLanguageButton.click();
+    }
+
+    public void scrollToRomanianLanguageButton(WebDriver driver) {
+        new Actions(driver).moveToElement(romanianLanguageButton).build().perform();
     }
 }

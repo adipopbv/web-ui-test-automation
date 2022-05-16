@@ -35,6 +35,11 @@ public class EndUserSteps {
     }
 
     @Step
+    public void clickLogout() {
+        wikipediaPage.clickLogout();
+    }
+
+    @Step
     public void shouldBeLoggedIn() {
         assertThat(wikipediaPage.accountUsername(), is(not("")));
     }
@@ -65,5 +70,11 @@ public class EndUserSteps {
         enterPassword(password);
         clickLogin();
         shouldNotBeLoggedIn();
+    }
+
+    @Step
+    public void logout() {
+        clickLogout();
+        shouldBeLoggedOut();
     }
 }

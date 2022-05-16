@@ -6,6 +6,8 @@ import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 
 import net.thucydides.junit.annotations.UseTestDataFrom;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -23,17 +25,26 @@ public class TestLogin {
 
     String username, password, badPassword;
 
-    @Issue("#valid-login")
-    @Test
-    public void testValidLogin() {
+    @Before
+    public void setUp() {
         user.openHomePage();
-        user.login(username, password);
+    }
+
+    @After
+    public void tearDown() {
+        user.logout();
     }
 
     @Issue("#invalid-login")
     @Test
     public void testInvalidLogin() {
-        user.openHomePage();
         user.failedLogin(username, badPassword);
     }
+
+    @Issue("#valid-login")
+    @Test
+    public void testValidLogin() {
+        user.login(username, password);
+    }
+
 }

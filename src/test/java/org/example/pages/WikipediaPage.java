@@ -13,6 +13,9 @@ public class WikipediaPage extends PageObject {
     @FindBy(id="pt-login")
     private WebElementFacade toLoginPageButton;
 
+    @FindBy(id="pt-logout")
+    private WebElementFacade logoutButton;
+
     @FindBy(id="wpName1")
     private WebElementFacade usernameField;
 
@@ -42,6 +45,10 @@ public class WikipediaPage extends PageObject {
 
     public void clickLogin() {
         loginButton.click();
+    }
+
+    public void clickLogout() {
+        logoutButton.click();
     }
 
     public String accountUsername() {

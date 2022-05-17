@@ -4,6 +4,8 @@ import org.example.pages.WikipediaPage;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.WebDriver;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -76,7 +78,7 @@ public class EndUserSteps {
 
     @Step
     private void shouldBeInRomanianLanguage() {
-        assertThat(wikipediaPage.mainPageTabText(), is("Pagina principală"));
+        assertThat(wikipediaPage.toLoginPageButton.getText(), is("Autentificare"));
     }
 
     @Step
@@ -117,7 +119,6 @@ public class EndUserSteps {
 
     @Step
     public void changeLanguageToRomanian(WebDriver driver) {
-        scrollToRomanianLanguageButton(driver);
         clickRomanianLanguageButton();
         shouldBeInRomanianLanguage();
     }

@@ -11,11 +11,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 
 @DefaultUrl("https://en.wikipedia.org/wiki/Main_Page")
 public class WikipediaPage extends PageObject {
     @FindBy(id = "pt-login")
-    private WebElementFacade toLoginPageButton;
+    public WebElementFacade toLoginPageButton;
 
     @FindBy(id = "pt-logout")
     private WebElementFacade logoutButton;
@@ -47,7 +48,7 @@ public class WikipediaPage extends PageObject {
     @FindBy(id = "ca-nstab-main")
     private WebElementFacade mainPageTab;
 
-    @FindBy(className = "interlanguage-link interwiki-ro mw-list-item")
+    @FindBy(xpath = "//a[@title='Romanian']")
     private WebElementFacade romanianLanguageButton;
 
     public void goToLoginPage() {
@@ -111,6 +112,10 @@ public class WikipediaPage extends PageObject {
     }
 
     public void scrollToRomanianLanguageButton(WebDriver driver) {
-        new Actions(driver).moveToElement(romanianLanguageButton).build().perform();
+        try{
+        new Actions(driver).moveToElement(romanianLanguageButton).click().build().perform();
+        }catch (Exception ex){
+            ex.getCause().printStackTrace();
+        }
     }
 }
